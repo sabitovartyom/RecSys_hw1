@@ -8,7 +8,7 @@ RUN apt-get update \
 WORKDIR /workspace
 
 COPY requirements.txt /workspace/requirements.txt
-RUN python -m pip install --no-cache-dir -r requirements.txt \
+RUN python -m pip install --no-cache-dir --timeout=60 --retries=3 -r requirements.txt \
     && python -m pip check \
     && python -c "import numpy as np, torch; torch.from_numpy(np.zeros(1)).numpy()"
 

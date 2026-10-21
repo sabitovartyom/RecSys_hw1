@@ -3,4 +3,4 @@ set -euo pipefail
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 
-docker build -f Dockerfile -t recsys-hw1 .
+docker build --network=host -f Dockerfile -t recsys-hw1 .
