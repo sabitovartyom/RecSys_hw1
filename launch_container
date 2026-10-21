@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
+
+docker run \
+    -d -it --rm --init \
+    --name recsys-hw1 \
+    --shm-size=2g \
+    --user "$(id -u):$(id -g)" \
+    --env HOME=/tmp \
+    --env PYTHONUNBUFFERED=1 \
+    --publish 127.0.0.1:8888:8888 \
+    --mount "type=bind,src=${PWD},dst=/workspace" \
+    recsys-hw1 bash
